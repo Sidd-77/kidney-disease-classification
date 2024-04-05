@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/kidney-disease-classification/mlruns/0/c98f031ccf2f44a7b0a95e8c33fc5da4/artifacts
+end_time: 1712305889359
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c98f031ccf2f44a7b0a95e8c33fc5da4
+run_name: brawny-donkey-74
+run_uuid: c98f031ccf2f44a7b0a95e8c33fc5da4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712305878733
+status: 3
+tags: []
+user_id: siddh
