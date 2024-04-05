@@ -2,6 +2,7 @@ from CNN_Classifier import logger
 from CNN_Classifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from CNN_Classifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from CNN_Classifier.pipeline.stage_03_model_training import ModelTrainingPipeline
+from CNN_Classifier.pipeline.stage_04_model_evaluation import ModelEvalutaionPipeline
 
 STAGE_NAME = "Data Ingestion Stage"
 
@@ -31,6 +32,18 @@ if __name__=='__main__':
     try:
         logger.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
         obj = ModelTrainingPipeline()
+        obj.main()
+        logger.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<")
+    except Exception as e:
+        raise e
+    
+
+STAGE_NAME = "Model Evaluaion"
+
+if __name__=='__main__':
+    try:
+        logger.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
+        obj = ModelEvalutaionPipeline()
         obj.main()
         logger.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<")
     except Exception as e:

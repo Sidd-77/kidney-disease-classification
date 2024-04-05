@@ -1,6 +1,6 @@
 from CNN_Classifier.constants import *
-from CNN_Classifier.utils.common import read_yaml, create_directories
-from CNN_Classifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig
+from CNN_Classifier.utils.common import read_yaml, create_directories, load_json
+from CNN_Classifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig, EvalutationConfig
 import os
 
 class ConfigurationManager:
@@ -62,3 +62,15 @@ class ConfigurationManager:
             params_image_size=params.IMAGE_SIZE
         )
         return training_config
+    
+    def get_evaluation_config(self)->EvalutationConfig:
+        eval_config = EvalutationConfig(
+            path_of_model="artifacts/training/model.keras",
+            training_data="artifacts/data_ingestion/kidney-data/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone",
+            mlflow_uri="https://dagshub.com/Sidd-77/kidney-disease-classification.mlflow",
+            all_params=self.params,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE
+        )
+        return eval_config
+    
