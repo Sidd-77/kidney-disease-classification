@@ -1,6 +1,7 @@
 from CNN_Classifier.config.configuration import TrainingConfig
 from pathlib import Path
 import tensorflow as tf
+import os
 
 
 class Training:
@@ -87,5 +88,9 @@ class Training:
         )
         self.save_model(
             path=self.config.trained_model_path,
+            model=self.full_model
+        )
+        self.save_model(
+            path=os.path.join("model","model.keras"),
             model=self.full_model
         )

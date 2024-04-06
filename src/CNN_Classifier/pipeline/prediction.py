@@ -9,7 +9,7 @@ class PredictionPipeline:
         self.filename = filename
     
     def predict(self, ):
-        model = load_model(os.path.join("artifacts","training", "model.keras"))
+        model = load_model(os.path.join("model","model.keras"))
         imagename = self.filename
         test_image = image.load_img(imagename, target_size=(224, 224))
         test_image = image.img_to_array(test_image)
