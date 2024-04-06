@@ -11,11 +11,11 @@ class ClientApp:
 
 obj = ClientApp()
 
-st.title('Kindney Disease Classification Using Deep Learning')
+st.title('Kindney Disease :health_worker: Classification Using Deep Learning')
 st.divider()
 st.subheader("Upload your image of kidney ct-scan to cheack for any disease")
 
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Choose a file", type=['jpg','png','jpeg'])
 if uploaded_file is not None:
     with open(obj.filename, "wb") as f:
         f.write(uploaded_file.getbuffer())
@@ -23,8 +23,12 @@ if uploaded_file is not None:
     prediction, result_raw = obj.classifier.predict()
     if(prediction=='Failed'):
         st.write("Something went wrong")
+    elif(prediction=='Normal'):
+        st.write("You have healthy kidney")
+        st.write("You don't have any disease")
     else:
-        st.write("You have ",prediction," kidney")
+        st.write("You have unhealthy kideny")
+        st.write("You have ",prediction," in your kidney")
         df = pd.DataFrame(data=result_raw, columns=['Cyst', 'Normal', 'Stone', 'Tumor'], index=None)
         st.write("Probablity for each case : ")
         st.dataframe(df)

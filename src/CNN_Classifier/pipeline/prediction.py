@@ -16,19 +16,20 @@ class PredictionPipeline:
         test_image = np.expand_dims(test_image, axis=0)
 
         result_raw = model.predict(test_image)
-        result = np.argmax(result_raw, axis=0)
+        result = np.argmax(result_raw[0], axis=0)
         print(result_raw)
+        print(result)
 
-        if result[0] == 0:
+        if result == 0:
             prediction = "Cyst"
             return (prediction, result_raw)
-        elif result[1] ==  1:
+        elif result ==  1:
             prediction = "Normal"
             return (prediction, result_raw)
-        elif result[2] == 2:
+        elif result == 2:
             prediction = "Stone"
             return (prediction, result_raw)
-        elif result[3] == 3:
+        elif result == 3:
             prediction = "Tumor"
             return (prediction, result_raw)
         
