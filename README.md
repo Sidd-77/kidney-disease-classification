@@ -27,7 +27,12 @@ This project is an end-to-end deep learning application that uses the VGG16 mode
 
 - **Dataset**: [Kaggle CT Kidney Dataset](https://www.kaggle.com/datasets/nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone/data)
 
-  
+## Data Pipeline
+![Pipeline Structure](images%5CPipeline.png)
+
+
+## Model Evalutaion
+![Model Evalutaion from mlflow](images%5CResults.png)
 
 ## Setup and Installation 
 
