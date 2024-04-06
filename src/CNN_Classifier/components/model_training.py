@@ -10,9 +10,48 @@ class Training:
 
 
     def get_base_model(self):
-        self.model = tf.keras.models.load_model(
-            self.config.updated_base_model_path
+        self.model = tf.keras.applications.VGG16(
+            input_shape=self.config.params_image_size,
+            weights=self.config.params_weights,
+            include_top=self.config.params_include_top
         )
+        self.model.trainable = False
+
+        flatten_in = tf.keras.layers.Flatten()(self.model.output)
+        prediction = tf.keras.layers.Dense(
+            units=4,
+            activation="softmax"
+        )(flatten_in)
+
+        self.full_model = tf.keras.Model(
+            inputs=self.model.input,
+            outputs=prediction
+        )
+
+        opt = tf.keras.optimizers.RMSprop(
+            learning_rate=self.config.params_learning_rate,
+            rho=0.9,
+            momentum=0.0,
+            epsilon=1e-07,
+            centered=False,
+            weight_decay=None,
+            clipnorm=None,
+            clipvalue=None,
+            global_clipnorm=None,
+            use_ema=False,
+            ema_momentum=0.99,
+            ema_overwrite_frequency=100,
+            name="rmsprop",
+        )
+
+        self.full_model.compile(
+            optimizer=opt,
+            loss=tf.keras.losses.CategoricalCrossentropy(),
+            metrics=['accuracy']
+        )
+
+        self.full_model.summary()
+        
 
 
     @staticmethod
@@ -37,9 +76,10 @@ class Training:
             verbose=True,
         )
 
+
     def train(self):
-        
-        self.model.fit(
+        self.full_model.summary()
+        self.full_model.fit(
             self.train_data,
             epochs=self.config.params_epochs,
             shuffle=True,
@@ -47,5 +87,5 @@ class Training:
         )
         self.save_model(
             path=self.config.trained_model_path,
-            model=self.model
+            model=self.full_model
         )
