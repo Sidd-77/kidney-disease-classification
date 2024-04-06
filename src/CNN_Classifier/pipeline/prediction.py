@@ -14,23 +14,22 @@ class PredictionPipeline:
         test_image = image.load_img(imagename, target_size=(224, 224))
         test_image = image.img_to_array(test_image)
         test_image = np.expand_dims(test_image, axis=0)
-        print(test_image.shape)
 
         result_raw = model.predict(test_image)
         result = np.argmax(result_raw, axis=0)
+        print(result_raw)
 
-        if result[0] == 1:
+        if result[0] == 0:
             prediction = "Cyst"
             return (prediction, result_raw)
         elif result[1] ==  1:
             prediction = "Normal"
             return (prediction, result_raw)
-        elif result[2] == 1:
+        elif result[2] == 2:
             prediction = "Stone"
             return (prediction, result_raw)
-        elif result[3] == 1:
+        elif result[3] == 3:
             prediction = "Tumor"
             return (prediction, result_raw)
         
         return ("Failed", result_raw)
-        

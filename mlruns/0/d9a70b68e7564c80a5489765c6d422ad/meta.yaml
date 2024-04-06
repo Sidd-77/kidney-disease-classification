@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/kidney-disease-classification/mlruns/0/d9a70b68e7564c80a5489765c6d422ad/artifacts
+end_time: 1712360597360
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d9a70b68e7564c80a5489765c6d422ad
+run_name: thundering-stoat-37
+run_uuid: d9a70b68e7564c80a5489765c6d422ad
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712360593123
+status: 4
+tags: []
+user_id: sidd

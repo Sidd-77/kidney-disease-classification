@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/kidney-disease-classification/mlruns/0/e694ecf4136a44d790bbce77a80ca25b/artifacts
+end_time: 1712360713114
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e694ecf4136a44d790bbce77a80ca25b
+run_name: nosy-cat-147
+run_uuid: e694ecf4136a44d790bbce77a80ca25b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712360709178
+status: 4
+tags: []
+user_id: sidd

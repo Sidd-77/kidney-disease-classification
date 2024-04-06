@@ -1,4 +1,5 @@
 from CNN_Classifier import logger
+import os
 from CNN_Classifier.components.model_evaluation import Evaluation
 from CNN_Classifier.config.configuration import ConfigurationManager
 
@@ -18,6 +19,9 @@ class ModelEvalutaionPipeline:
 
 if __name__=='__main__':
     try:
+        os.environ['MLFLOW_TRACKING_URI']="https://dagshub.com/Sidd-77/kidney-disease-classification.mlflow"
+        os.environ['MLFLOW_TRACKING_USERNAME']="Sidd-77"
+        os.environ['MLFLOW_TRACKING_PASSWORD']="61bcab158d9ab43c4be35facef8400397b011fcc"
         logger.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
         obj = ModelEvalutaionPipeline()
         obj.main()

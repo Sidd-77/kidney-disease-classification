@@ -23,12 +23,7 @@ class PrepareBaseModel:
 
     @staticmethod
     def prepare_full_model(model, classes, freeze_all, freeze_till, learning_rate):
-        if freeze_all:
-            for layer in model.layers:
-                layer.trainable = False ## watch out
-        elif (freeze_till is not None) and (freeze_till > 0):
-            for layer in model.layers[:-freeze_till]:
-                layer.trainable = False ## watch out
+        model.trainable = False
 
         flatten_in = tf.keras.layers.Flatten()(model.output)
         prediction = tf.keras.layers.Dense(
@@ -36,13 +31,29 @@ class PrepareBaseModel:
             activation="softmax"
         )(flatten_in)
 
-        full_model = tf.keras.models.Model(
+        full_model = tf.keras.Model(
             inputs=model.input,
             outputs=prediction
         )
 
+        opt = tf.keras.optimizers.RMSprop(
+            learning_rate=learning_rate,
+            rho=0.9,
+            momentum=0.0,
+            epsilon=1e-07,
+            centered=False,
+            weight_decay=None,
+            clipnorm=None,
+            clipvalue=None,
+            global_clipnorm=None,
+            use_ema=False,
+            ema_momentum=0.99,
+            ema_overwrite_frequency=100,
+            name="rmsprop",
+        )
+
         full_model.compile(
-            optimizer=tf.keras.optimizers.SGD(learning_rate=learning_rate),
+            optimizer=opt,
             loss=tf.keras.losses.CategoricalCrossentropy(),
             metrics=['accuracy']
         )
